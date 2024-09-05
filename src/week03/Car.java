@@ -8,9 +8,6 @@ package week03;
 
 public class Car {
     // <필드 영역>
-
-
-
     //(1) 고유 데이터 영역
     String company; // 자동차 회사
     String model = "Gv80"; // 자동차 모델
@@ -20,7 +17,7 @@ public class Car {
     double price; // 자동차 가격
     double speed; // 자동차 속도. km/h
     char gear; //기어상태(P,R,N,D)
-    boolean lights; // 자동차 조명 상태
+    boolean lights = true; // 자동차 조명 상태
 
     //(3) 객체 데이터 영역
     Tire tire = new Tire();
@@ -29,7 +26,7 @@ public class Car {
 
     // <생성자 영역>
     //생성자 : 처음 객체가 생성될 때(instance화) 어떤 로직을 수행해야 하며, 어떤 값이 필수로 들어와야 하는지 정의!
-    public Car(){
+    public Car() {
         //logic
         //기본 생성자 : 생략이 가능
         System.out.println("생성자가 호출되었습니다. 객체가 생성됩니다.");
@@ -40,7 +37,8 @@ public class Car {
     // gasPedal
     // input : km/h
     // output : speed
-    double gasPedal(double kmh){
+    double gasPedal(double kmh, char type) {
+        changeGear(type); //가속도 페달을 밟으면 자동으로 기어가 변한다.
         speed = kmh;
         return speed;
     }
@@ -48,7 +46,7 @@ public class Car {
     // brakePedal
     // input : x
     // output : speed
-    double brakePedal(){
+    double brakePedal() {
         speed = 0;
         return speed;
     }
@@ -56,7 +54,7 @@ public class Car {
     // changeGear
     // input : gear(char type)
     // output : gear
-    char changeGear (char type){
+    char changeGear(char type) {
         gear = type;
         return gear;
     }
@@ -72,10 +70,15 @@ public class Car {
     // horn
     // input : x
     // output : x
-    void horn (){
+    void horn() {
         System.out.println("빵빵!");
     }
 
-
+    //자동차의 속도를 구하는 함수, 가변길이 메서드
+    void carSpeeds(double ... speeds){
+        for (double v : speeds) {
+            System.out.println("v = " + v);
+        }
+    }
 
 }
